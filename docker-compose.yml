@@ -4,20 +4,21 @@ services:
     build: .
     entrypoint: .docker/entrypoint.sh
     container_name: nest-bank-app
-    ports: 
+    ports:
       - 3000:3000
     volumes:
       - .:/home/node/app
+    env_file:
+      - ./env/app/.news.env
     depends_on:
       - db
-    
+
   db:
     build: .docker/postgres
     container_name: nest-bank-db
     restart: always
     tty: true
-    volumes: 
+    volumes:
       - .docker/dbdata:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_PASSWORD=root
-      - POSTGRES_DB=nest
+    env_file:
+      - ./env/postgres/.porstgres.env

@@ -35,32 +35,15 @@ $ npm install
 ## Running the app
 
 ```bash
+# permission to entrypoint.sh
+$ chmod +x .docker/entrypoint.sh
+
 # development
-$ npm run start
+$ docker-compose up
 
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+# enter in the app container
+$ docker-compose exec app  bash
 ```
-
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
 
 ## Stay in touch
 
@@ -71,3 +54,23 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 ## License
 
 Nest is [MIT licensed](LICENSE).
+
+## Information from the APIs
+
+## [Newsdata API](https://newsdata.io/docs)
+
+| Field Name  |  Type  |                                         Description |
+| :---------- | :----: | --------------------------------------------------: |
+| title       | string |                               Title of the article. |
+| link        | string |                      The direct URL to the article. |
+| source_id   | string |      The name of the source this article came from. |
+| keywords    | array  |         The list of keywords related to the article |
+| creator     | array  |                  The author(s) of the news article. |
+| image_url   | string |            Relevant image url for the news article. |
+| video_url   | string |            Relevant video url for the news article. |
+| description | string |                  A description of the news article. |
+| pubDate     | string |           The article publish date and time in UTC. |
+| content     | string |    A Full Content if available of the news article. |
+| country     | array  |   The list of countries related to the news article |
+| category    | array  |          The list of categories of the news article |
+| language    | string | The language in which news article has been created |
