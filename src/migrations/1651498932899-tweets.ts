@@ -2,6 +2,7 @@ import {
   MigrationInterface,
   QueryRunner,
   Table,
+  TableColumn,
   TableForeignKey,
 } from 'typeorm';
 
@@ -39,10 +40,6 @@ export class news1651434202969 implements MigrationInterface {
             type: 'int',
           },
           {
-            name: 'source_id',
-            type: 'int',
-          },
-          {
             name: 'category_id',
             type: 'int',
           },
@@ -62,9 +59,17 @@ export class news1651434202969 implements MigrationInterface {
           },
         ],
       }),
-      true,
     );
-    queryRunner.clearSqlMemory();
+
+    await queryRunner.addColumn(
+      'news',
+      new TableColumn({
+        name: 'source_id',
+        type: 'int',
+      }),
+    );
+
+    // queryRunner.clearSqlMemory();
     await queryRunner.createForeignKeys('news', [
       new TableForeignKey({
         columnNames: ['country_id'],

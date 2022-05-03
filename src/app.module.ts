@@ -3,11 +3,11 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { Category, Country, Language, New, Source } from './news/entities';
 import { NewsModule } from './news/news.module';
 
 @Module({
   imports: [
-    NewsModule,
     ConfigModule.forRoot(), // import env variables
     TypeOrmModule.forRoot({
       type: process.env.TYPEORM_CONNECTION as any,
@@ -17,8 +17,9 @@ import { NewsModule } from './news/news.module';
       password: process.env.TYPEORM_PASSWORD,
       database: process.env.TYPEORM_DATABASE,
       synchronize: true,
-      entities: [],
+      entities: [Category, Country, Language, New, Source],
     }),
+    NewsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

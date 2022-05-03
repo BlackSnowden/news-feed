@@ -33,15 +33,16 @@ export class countries1651466634216 implements MigrationInterface {
           },
         ],
       }),
+      true,
     );
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    // const table = await queryRunner.getTable('news');
-    // const foreignKey = table.foreignKeys.find(
-    //   (fk) => fk.columnNames.indexOf('country_id') !== -1,
-    // );
-    // await queryRunner.dropForeignKey('news', foreignKey);
+    const table = await queryRunner.getTable('news');
+    const foreignKey = table.foreignKeys.find(
+      (fk) => fk.columnNames.indexOf('country_id') !== -1,
+    );
+    await queryRunner.dropForeignKey('news', foreignKey);
     await queryRunner.dropTable('countries');
   }
 }

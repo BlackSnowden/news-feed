@@ -33,11 +33,11 @@ export class sources1651466686799 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    // const table = await queryRunner.getTable('news');
-    // const foreignKey = table.foreignKeys.find(
-    //   (fk) => fk.columnNames.indexOf('source_id') !== -1,
-    // );
-    // await queryRunner.dropForeignKey('news', foreignKey);
-    await queryRunner.dropTable('languages');
+    const table = await queryRunner.getTable('news');
+    const foreignKey = table.foreignKeys.find(
+      (fk) => fk.columnNames.indexOf('source_id') !== -1,
+    );
+    await queryRunner.dropForeignKey('news', foreignKey);
+    await queryRunner.dropTable('sources');
   }
 }
