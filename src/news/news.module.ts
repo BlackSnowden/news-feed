@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import { HttpModule } from '@nestjs/axios';
 import { NewsService } from './news.service';
 import { NewsController } from './news.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -7,9 +8,11 @@ import { CategoryController } from './controller/category/category.controller';
 import { LanguageController } from './controller/language/language.controller';
 import { InsertFromJsonService } from 'src/news/shared/services/insert-from-json/insert-from-json.service';
 import { Category, Country, Language, New, Source } from './entities/index';
+import { NewsAutomationService } from './automation/news-automation/news-automation.service';
 @Module({
   imports: [
     TypeOrmModule.forFeature([Category, Country, Language, New, Source]), // inject on the children module
+    HttpModule,
   ],
   controllers: [
     NewsController,
@@ -17,6 +20,6 @@ import { Category, Country, Language, New, Source } from './entities/index';
     CategoryController,
     LanguageController,
   ],
-  providers: [NewsService, InsertFromJsonService],
+  providers: [NewsService, InsertFromJsonService, NewsAutomationService],
 })
 export class NewsModule {}
